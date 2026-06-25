@@ -24,6 +24,7 @@
 ```
 barguesAPP/
 ├── main.py                  # Ponto de entrada da aplicação
+├── tests/                   # Testes de funcoes
 ├── bargues.db               # Banco de dados local
 │
 ├── docs/
@@ -76,6 +77,7 @@ barguesAPP/
 | `logger.py`   | Configuração centralizada do logging            |
 | `routes/`     | Liga os endpoints FastAPI ao CRUD               |
 | `frontend/`   | Consome a API REST e serve o HTML               |
+| `tests/`      | Roda os testes antes de iniciar o programa      |
 
 ---
 
@@ -101,6 +103,9 @@ Se um item tiver um valor próprio cadastrado para um drink, esse valor tem prio
 
 **Tabela de média de consumo**  
 Tabela auxiliar que acumula quantidades pedidas por item. Usada nos relatórios de itens mais e menos vendidos, sem precisar recalcular o histórico completo.
+
+**Imutabilidade de operacoes**
+Nenhuma operacao pode ser editada ou apagada. Correcoes se fazem atraves da tabela `correcoes`, que referencia a operacao, armazena um motivo e o valor da correcao
 
 ---
 

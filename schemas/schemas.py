@@ -5,97 +5,68 @@ from decimal import Decimal
 
 # -- Operacao ---------
 
-class OperacaoBase(bm):
+class OperacaoInput(bm):
     valor: Decimal # Validar nao positivo
     tipo: Tipo
 
 
-class OperacaoInput(OperacaoBase):
-    pass
-
-
-class OperacaoOutput(OperacaoBase):
+class OperacaoOutput(OperacaoInput):
     id: int
     criacao: date
     modificado: date
     caixa_momento: Decimal
 
 
-class OperacaoEdit(bm):
-    valor: Decimal | None = None 
-    tipo: Tipo | None = None
-
-
 # -- Correcao ---------
 
-class CorrecaoBase(bm):
-    motivo: str
+class CorrecaoInput(bm):
+    motivo: str | None = None
     valor: Decimal
     operacao_id: int
 
-class CorrecaoInput(CorrecaoBase):
-    pass
-
-class CorrecaoOutput(CorrecaoBase):
+class CorrecaoOutput(CorrecaoInput):
     id: int
     criacao: date
 
-class CorrecaoEdit(bm):
-    motivo: str | None = None
-    valor: Decimal | None = None
-    operacao_id: int | None = None
+# -- Caixa ---------
+
+class CaixaOutput(bm):
+    valor_dinheiro:Decimal
+    valor_cartao:Decimal
+    total_sistema:Decimal
+    cartao_sistema:Decimal
+    sangria:Decimal
+    criacao:date
+    
+
+class CaixaInput(CaixaOutput):
+    confirmar: bool
+
 
 # -- Drinks ---------
+class DrinkCategoriaOutput(bm):
+    id: int
+    ativo: bool
+    criacao: date
+    modificado: date
 
-class DrinkCategoriaBase(bm):
+class DrinkCategoriaInput(DrinkCategoriaOutput):
     nome: str
 
 
-class DrinkInput(DrinkCategoriaBase):
-    pass
-
-
-class DrinkOutput(DrinkCategoriaBase):
-    id: int
-    ativo: bool
-    criacao: date
-    modificado: date
-
-class DrinkEdit(bm):
+class DrinkCategoriaEdit(bm):
     ativo: bool | None = None
     nome: str | None = None
-
-
-# -- Categoria ---------
-
-class CategoriaInput(DrinkCategoriaBase):
-    pass
-
-
-class CategoriaOutput(DrinkCategoriaBase):
-    id: int
-    criacao: date
-    modificado: date
-    ativo: bool
-
-class CategoriaEdit(bm):
-    ativo: bool | None = None
-    nome: str | None = None
-
 
 # -- Item ---------
 
-class ItemBase(bm):
+class ItemInput(bm):
     nome: str
     categoria_id: int
     quantidade_recomendada: int
 
 
-class ItemInput(ItemBase):
-    pass
-
-
-class ItemOutput(ItemBase):
+class ItemOutput(ItemInput):
     id: int
     ativo: bool
     criacao: date
@@ -110,18 +81,14 @@ class ItemEdit(bm):
 
 # -- Valor ---------
 
-class ValorBase(bm):
+class ValorInput(bm):
     valor: int 
     drink_id: int | None
     item_id: int | None
     categoria_id: int | None
 
 
-class ValorInput(ValorBase):
-    pass
-
-
-class ValorOutput(ValorBase):
+class ValorOutput(ValorInput):
     id: int
     criacao: date
     modificado: date
@@ -134,17 +101,12 @@ class ValorEdit(bm):
 
 # -- Media ---------
 
-class MediaBse(bm):
+class MediaInput(bm):
     item_id: int
     quantidade_acumulo: int
     media: int
 
-
-class MediaInput(MediaBse):
-    pass
-
-
-class MediaOutput(MediaBse):
+class MediaOutput(MediaInput):
     id: int
     atualizado_em: date
 
@@ -157,16 +119,12 @@ class MediaEdit(bm):
 
 # -- Qyabtudade Atual ---------
 
-class QuantidadeBase(bm):
+class QuantidadeInput(bm):
     item_id: int
     quantidade_atual: int
 
 
-class QuantidadeInput(QuantidadeBase):
-    pass
-
-
-class QuantidadeOutput(QuantidadeBase):
+class QuantidadeOutput(QuantidadeInput):
     id: int
     criacao: date
 

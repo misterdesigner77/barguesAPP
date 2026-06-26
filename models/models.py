@@ -29,12 +29,14 @@ class Operacao(Base):
     caixa_momento: Mapped[Decimal] = mapped_column(Numeric(10, 2))
 
     correcao: Mapped["Correcao"] = relationship(back_populates="operacao")
+
 class Correcao(Base):
     __tablename__ = "correcoes"
 
     valor: Mapped[Decimal] = mapped_column(Numeric(10,2))
     motivo: Mapped[str | None] = mapped_column(String(255), nullable= True)
     operacao_id: Mapped[int] = mapped_column(ForeignKey("operacoes.id"))
+    caixa_momento: Mapped[Decimal] = mapped_column(Numeric(10, 2))
 
     operacao: Mapped["Operacao"] = relationship(back_populates="correcao")
 # -- Estoque -----------

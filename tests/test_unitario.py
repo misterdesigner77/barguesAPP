@@ -15,7 +15,6 @@ def test_db_vazio(db):
     assert resultado == []
 
 
-
 def test_com_data(db):
     # Criar um registro de operacao
     create_operacoes(db=db, data=OperacaoInput(
@@ -44,3 +43,32 @@ def test_com_data(db):
     # Busca o mais recente
     caixa = get_caixa_atual(db=db)
     assert caixa == Decimal(10)
+
+    # Busca o de hoje
+    resultado = get_tipos_periodo(db=db, tipo=Tipo.SANGRIA, data_inicial=datetime.now())
+    print(f"teste: {resultado}")
+    assert type(resultado) == list
+
+def test_make_caixa(db):
+    # Criar caixa
+    caixa = make_caixa(db=db, data=CaixaInput(
+        valor_cartao=400,
+        total_sistema=1200,
+        cartao_sistema=700,
+    ))
+    assert caixa.valor_dinheiro == 0
+    assert caixa.total_sistema == 1200
+
+    cartao = get_tipos_periodo(db=db, tipo=Tipo.CARTAO, data_inicial=datetime.now())
+    assert sum(op.valor for op in cartao) == 400
+
+    # Buscar caixa
+    caixa = get_fluxo_de_caixa(db=db, data_inicial=datetime.now())
+    assert caixa[0].valor_cartao == 400
+
+    # Gerar relatorio
+    relatorio = gerar_relatorio_caixa(db=db, data_inicial=datetime.now())
+    print(relatorio)
+    assert relatorio.dias_registrados == 1
+    assert relatorio.total_sistema == 1200
+    assert relatorio.dinheiro_sistema == 500

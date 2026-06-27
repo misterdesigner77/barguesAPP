@@ -192,3 +192,225 @@ caixa_momento
 2026-06-26 04:22:33,042 - [INFO] - Correcao realizada - ID:1
 2026-06-26 04:22:59,631 - [INFO] - Operacao registrada com sucesso - ID:1
 2026-06-26 04:22:59,635 - [INFO] - Correcao realizada - ID:1
+2026-06-26 07:53:34,579 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 07:53:34,582 - [INFO] - Correcao realizada - ID:1
+2026-06-26 07:53:50,063 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 07:53:50,066 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:18:25,999 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:18:26,003 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:22:00,867 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:22:00,874 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:22:55,348 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:22:55,353 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:23:20,658 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:23:20,662 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:26:08,807 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:26:08,811 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:27:20,774 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:27:20,781 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:29:41,043 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:29:41,049 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:30:12,705 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:30:12,711 - [INFO] - Correcao realizada - ID:1
+2026-06-26 09:32:47,220 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 09:32:47,226 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:16:36,621 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 21:16:36,628 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:18:19,184 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 21:18:19,192 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:18:19,217 - [ERROR] - Erro ao registrar caixa
+Traceback (most recent call last):
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    context = constructor(
+              ^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1496, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+  File "lib/sqlalchemy/cyextension/processors.pyx", line 27, in sqlalchemy.cyextension.processors.to_float
+TypeError: float() argument must be a string or a real number, not 'Operacao'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/topaziomarcos/dev/BarguesAPP/crud/crud.py", line 140, in make_caixa
+    db.commit()
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1823, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    context = constructor(
+              ^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1496, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+  File "lib/sqlalchemy/cyextension/processors.pyx", line 27, in sqlalchemy.cyextension.processors.to_float
+sqlalchemy.exc.StatementError: (builtins.TypeError) float() argument must be a string or a real number, not 'Operacao'
+[SQL: INSERT INTO caixas (valor_dinheiro, valor_cartao, total_sistema, cartao_sistema, sangria_total, criacao, modificado) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: [{'sangria_total': 0, 'total_sistema': Decimal('1200'), 'cartao_sistema': Decimal('700'), 'valor_cartao': <models.models.Operacao object at 0x77c562d7bb00>, 'valor_dinheiro': 0}]]
+2026-06-26 21:18:41,695 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 21:18:41,700 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:18:41,714 - [ERROR] - Erro ao registrar caixa
+Traceback (most recent call last):
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: NOT NULL constraint failed: operacoes.caixa_momento
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/topaziomarcos/dev/BarguesAPP/crud/crud.py", line 140, in make_caixa
+    db.commit()
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/topaziomarcos/dev/BarguesAPP/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: operacoes.caixa_momento
+[SQL: INSERT INTO operacoes (tipo, valor, caixa_momento, criacao, modificado) VALUES (?, ?, ?, ?, ?)]
+[parameters: ('CARTAO', 400.0, None, '2026-06-26 21:18:41.713687', '2026-06-26 21:18:41.713688')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-26 21:20:15,361 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 21:20:15,366 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:20:15,382 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-26 21:24:59,753 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 21:24:59,757 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:25:42,192 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 21:25:42,202 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:25:42,235 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-26 21:28:58,424 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 21:28:58,430 - [INFO] - Correcao realizada - ID:1
+2026-06-26 21:28:58,448 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-26 22:22:14,344 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 22:22:14,352 - [INFO] - Correcao realizada - ID:1
+2026-06-26 22:22:14,368 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-26 22:22:17,449 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 22:22:17,453 - [INFO] - Correcao realizada - ID:1
+2026-06-26 22:22:17,469 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-26 22:24:29,967 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-26 22:24:29,975 - [INFO] - Correcao realizada - ID:1
+2026-06-26 22:24:30,003 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:25:11,163 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:25:11,173 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:25:11,195 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:25:38,974 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:25:38,978 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:25:38,996 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:26:34,144 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:26:34,149 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:26:34,169 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:27:52,227 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:27:52,231 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:27:52,252 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:46:34,196 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:46:34,199 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:46:34,214 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:47:32,628 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:47:32,632 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:47:32,652 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:48:05,254 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:48:05,262 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:48:05,279 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1
+2026-06-27 03:48:24,559 - [INFO] - Operacao registrada com sucesso - ID:1
+2026-06-27 03:48:24,566 - [INFO] - Correcao realizada - ID:1
+2026-06-27 03:48:24,586 - [INFO] - Caixa registrado - ID:1
+Cartao Registrado: ID1

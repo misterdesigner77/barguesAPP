@@ -15,7 +15,3 @@ def calc_ultima_ocorrencia(ultima_operacao:Operacao, ultima_correcao:Correcao) -
     if mais_recente == ultima_operacao.criacao: return ultima_operacao.caixa_momento
     return ultima_correcao.caixa_momento
 
-def modelo_caixa():
-    return {
-        valor_dinheiro:str,
-    }

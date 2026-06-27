@@ -1,13 +1,14 @@
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import (Integer, ForeignKey, Numeric, Enum, DateTime, String, Boolean)
-from datetime import date, datetime
+from datetime import datetime
 from decimal import Decimal
 from enum import Enum as OSEnum
 
 # -- Types -----------
 class Tipo(str, OSEnum):
     SANGRIA = "sangria"
-    REGISTRO = "registro"
+    CARTAO = "cartao"
+    DINHEIRO = "dinheiro"
     ADICIONAR = "adicionar"
 
 # -- Base -----------
@@ -16,8 +17,8 @@ class Base(DeclarativeBase):
     __abstract__ = True
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    criacao: Mapped[date] = mapped_column(DateTime, default=datetime.now)
-    modificado: Mapped[date] = mapped_column(DateTime, default=datetime.now)
+    criacao: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
+    modificado: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
 
 # -- Caixa -----------
 
@@ -30,6 +31,7 @@ class Operacao(Base):
 
     correcao: Mapped["Correcao"] = relationship(back_populates="operacao")
 
+
 class Correcao(Base):
     __tablename__ = "correcoes"
 
@@ -39,6 +41,17 @@ class Correcao(Base):
     caixa_momento: Mapped[Decimal] = mapped_column(Numeric(10, 2))
 
     operacao: Mapped["Operacao"] = relationship(back_populates="correcao")
+
+
+class CaixaDiario(Base):
+    __tablename__="caixas"
+
+    valor_dinheiro: Mapped[Decimal] = mapped_column(Numeric(10,2))
+    valor_cartao: Mapped[Decimal] = mapped_column(Numeric(10,2))
+    total_sistema: Mapped[Decimal] = mapped_column(Numeric(10,2))
+    cartao_sistema: Mapped[Decimal] = mapped_column(Numeric(10,2))
+    sangria_total: Mapped[Decimal] = mapped_column(Numeric(10,2))
+
 # -- Estoque -----------
 
 class Drinks(Base):

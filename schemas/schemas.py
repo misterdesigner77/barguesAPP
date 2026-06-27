@@ -4,7 +4,6 @@ from datetime import date
 from decimal import Decimal
 
 # -- Operacao ---------
-
 class OperacaoInput(bm):
     valor: Decimal # Validar nao positivo
     tipo: Tipo
@@ -16,32 +15,40 @@ class OperacaoOutput(OperacaoInput):
     modificado: date
     caixa_momento: Decimal
 
-
 # -- Correcao ---------
-
 class CorrecaoInput(bm):
     motivo: str | None = None
     valor: Decimal
     operacao_id: int
+
 
 class CorrecaoOutput(CorrecaoInput):
     id: int
     criacao: date
 
 # -- Caixa ---------
-
-class CaixaOutput(bm):
-    valor_dinheiro:Decimal
+class CaixaInput(bm):
     valor_cartao:Decimal
     total_sistema:Decimal
     cartao_sistema:Decimal
-    sangria:Decimal
+
+
+class CaixaOutput(CaixaInput): 
     criacao:date
+    valor_dinheiro:Decimal
+    sangria:Decimal
     
 
-class CaixaInput(CaixaOutput):
-    confirmar: bool
-
+class RelatorioCaixa(bm):
+    dias_registrados: int
+    total_sistema: Decimal
+    cartao_sistema: Decimal
+    dinheiro_sistema: Decimal
+    valor_dinheiro_bruto: Decimal
+    valor_dinheiro_liquido: Decimal # Subtrai com o caixa antigo
+    valor_cartao: Decimal
+    sangria_total: Decimal
+    caixa_antigo: Decimal
 
 # -- Drinks ---------
 class DrinkCategoriaOutput(bm):
@@ -50,7 +57,7 @@ class DrinkCategoriaOutput(bm):
     criacao: date
     modificado: date
 
-class DrinkCategoriaInput(DrinkCategoriaOutput):
+class DrinkCategoriaInput(bm):
     nome: str
 
 
@@ -59,7 +66,6 @@ class DrinkCategoriaEdit(bm):
     nome: str | None = None
 
 # -- Item ---------
-
 class ItemInput(bm):
     nome: str
     categoria_id: int
@@ -80,7 +86,6 @@ class ItemEdit(bm):
     ativo: bool | None = None
 
 # -- Valor ---------
-
 class ValorInput(bm):
     valor: int 
     drink_id: int | None
@@ -93,6 +98,7 @@ class ValorOutput(ValorInput):
     criacao: date
     modificado: date
 
+
 class ValorEdit(bm):
     valor: int | None = None
     drink_id: int | None = None
@@ -100,11 +106,11 @@ class ValorEdit(bm):
     categoria_id: int | None = None
 
 # -- Media ---------
-
 class MediaInput(bm):
     item_id: int
     quantidade_acumulo: int
     media: int
+
 
 class MediaOutput(MediaInput):
     id: int
@@ -117,8 +123,7 @@ class MediaEdit(bm):
     media: int | None = None
 
 
-# -- Qyabtudade Atual ---------
-
+# -- Quantidade Atual ---------
 class QuantidadeInput(bm):
     item_id: int
     quantidade_atual: int

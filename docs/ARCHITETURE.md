@@ -90,9 +90,9 @@ O frontend HTML/JS consome a API via fetch. Separação clara entre backend e fr
 O caixa e a sangria recebem contagem de cédulas e moedas. O sistema calcula o total — elimina uso de calculadora e reduz erro humano.
 
 **Linhas vivas**  
-O Bargues opera 24 horas. Caixa e pedidos nunca fecham em horário fixo — cada operação é um registro com tipo (registro, sangria, adição), permitindo auditoria completa por período.
+O Bargues opera 24 horas. Caixa e pedidos nunca fecham em horário fixo — cada operação é um registro com tipo (dinheiro, cartao, sangria, adição), permitindo auditoria completa por período.
 
-**Redundância voluntária**  
+**Redundância voluntária**
 Cada operação armazena o estado atual do caixa ou estoque no momento do registro. Facilita relatórios por período sem recalcular a cadeia de operações.
 
 **Valores nullable em valor**  
@@ -107,17 +107,27 @@ Tabela auxiliar que acumula quantidades pedidas por item. Usada nos relatórios 
 **Imutabilidade de operacoes**
 Nenhuma operacao pode ser editada ou apagada. Correcoes se fazem atraves da tabela `correcoes`, que referencia a operacao, armazena um motivo e o valor da correcao
 
+**Tabela de caixa diario**
+Embora seja composta de valores derivativos, o caixa por dia sera muito utilizado em relatórios, explica o registro no Banco de dados
+
+**Fluxo duplo de informacoes**
+Existem dois fluxos sendo controlados pelo programa. O fluxo de caixa, que controla valores totais e o fluxo fisico atual, que controla a quantiadade de dinheiro no caixa. Um gera relatorios de vendas, o outro controla possiveis "vazamentos de dinheiro"
+
+**Fluxo de fechamento de caixa**
+Primeiro se preenche as informacoes de caixa, depois se consulta o caixa do dia. Caso nao se tenha todas as informacoes, o caixa do dia nao se gera
+
 ---
 
 ## Regras de negócio
 
-| Regra                      | Descrição                                                                       |
-| -------------------------- | ------------------------------------------------------------------------------- |
-| Valores negativos          | Nenhum valor monetário ou de estoque pode ser negativo — validado no Pydantic   |
-| Nome duplicado             | Itens e categorias não podem ter o mesmo nome — `warning` no log + `ValueError` |
-| Valor preferencial         | Valor do item tem prioridade sobre valor da categoria para o mesmo drink        |
-| Item inativo com estoque   | Continua aparecendo no sumário de estoque, mas não entra no pedido              |
-| Valor de item ou categoria | Nunca permitir os dois campos simultaneos                                       |
+| Regra                        | Descrição                                                                                            |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Valores negativos            | Nenhum valor monetário ou de estoque pode ser negativo — validado no Pydantic                        |
+| Nome duplicado               | Itens e categorias não podem ter o mesmo nome — `warning` no log + `ValueError`                      |
+| Valor preferencial           | Valor do item tem prioridade sobre valor da categoria para o mesmo drink                             |
+| Item inativo com estoque     | Continua aparecendo no sumário de estoque, mas não entra no pedido                                   |
+| Valor de item ou categoria   | Nunca permitir os dois campos simultaneos                                                            |
+| Fechamento de caixa dinamico | Nao gerar caixa diario enquanto nao tiver informacoes suficientes. O caixa se atualiza dinamicamente |
 
 ---
 
@@ -153,6 +163,7 @@ Nenhuma operacao pode ser editada ou apagada. Correcoes se fazem atraves da tabe
 | `"Baileys"` existente                   | Criar outro registro com o mesmo nome   | Rejeitar com `ValueError`                        |
 | `"Ron Conqueridor"` inativo com estoque | Consultar estoque                       | Aparece no sumário, não entra no pedido          |
 | `Xupito` registrado                     | Item e categoria id registrados         | Anular categoria_id                              |
+| Um dia novo                             | Se nao tiver todas informacoes de caixa | Nao gerar caixa diario                           |
 
 ---
 
